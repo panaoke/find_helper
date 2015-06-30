@@ -105,18 +105,19 @@ we will find those products which price > 50 and name include 'o'
   	
   	# name is not null
   	Product.by_scopes('$exists_name' => 'anything which do not care')
-  	Product Load (0.3ms)  SELECT "products".* FROM "products"  WHERE (products.name is not null )
+  	# SELECT "products".* FROM "products" WHERE (products.name is not null )
   	
   	# name is null	  	
     Product.by_scopes('$nexists_name' => 'anything which do not care')
-  	Product Load (0.3ms)  SELECT "products".* FROM "products"  WHERE (products.name is  null )
+  	# SELECT "products".* FROM "products" WHERE (products.name is  null )
   	
   	# date query (tips: created_at is a datetime attribute)
   	# created_at > '2015-06-30 12:00:00'
   	Product.by_scopes('$gt_created_at' => '2015-06-30 12:00:00')
   	# or
   	Product.by_scopes('$gt_created_at' => Time.parse('2015-06-30 12:00:00')
-  	# SELECT "products".* FROM "products"  WHERE (products.created_at > '2015-06-30 12:00:00.000000')
+  	# SELECT "products".* FROM "products"  WHERE
+  	    (products.created_at > '2015-06-30 12:00:00.000000')
   	
 
 
