@@ -22,7 +22,7 @@
         }
         
         scope :category_name_like, ->(|cat_name|) {
-          joins(:category).where('`cateogries.name` like ?', "%#{cat_name}%")
+          joins(:category).where('`categories.name` like ?', "%#{cat_name}%")
         }
         
         scope :category_ids, ->(cat_ids) {
