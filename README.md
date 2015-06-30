@@ -62,23 +62,23 @@ we will find those products which price > 50 and name include 'o'
 
 ### Comparison query (you don't need define model scope)
    
-   	# prict < 50
+   	# price < 50
    	Product.by_scopes({'$lt_price' => 50})
    	# SELECT "products".* FROM "products"  WHERE (products.price < 50)
    
-   	# prict <= 50
+   	# price <= 50
    	Product.by_scopes({'$lte_price' => 50})
    	# SELECT "products".* FROM "products"  WHERE (products.price <= 50)
    
-   	# prict > 50
+   	# price > 50
    	Product.by_scopes({'$gt_price' => 50})
    	# SELECT "products".* FROM "products"  WHERE (products.price > 50)
    
-   	# prict >= 50
+   	# price >= 50
    	Product.by_scopes({'$gte_price' => 50})
    	# SELECT "products".* FROM "products"  WHERE (products.price >= 50) 
    
-   	# prict != 50
+   	# price != 50
    	Product.by_scopes({'$ne_price' => 50})
    	# SELECT "products".* FROM "products"  WHERE (products.price != 50)
    
