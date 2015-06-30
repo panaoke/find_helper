@@ -6,17 +6,17 @@ module FindHelper
       attr_reader :klass, :filed, :find_filed, :find_value, :find_type, :filed_type
 
       FINDER_TYPES = {
-          :$eq => lambda{|klass, filed, value| ["#{klass.table_name}.#{filed} = ?", value]},
-          :$gt => lambda{|klass, filed, value| ["#{klass.table_name}.#{filed} > ?", value]},
-          :$gte => lambda{|klass, filed, value| ["#{klass.table_name}.#{filed} >= ?", value]},
-          :$lt => lambda{|klass, filed, value| ["#{klass.table_name}.#{filed} < ?", value]},
-          :$lte => lambda{|klass, filed, value| ["#{klass.table_name}.#{filed} <= ?", value]},
-          :$ne => lambda{|klass, filed, value| ["#{klass.table_name}.#{filed} != ?", value]},
-          :$in => lambda{|klass, filed, value| ["#{klass.table_name}.#{filed} in (?)", format_array]},
-          :$nin => lambda{|klass, filed, value| ["#{klass.table_name}.#{filed} not in (?) ", format_array]},
-          :$like => lambda{|klass, filed, value| ["#{klass.table_name}.#{filed} like ?", "%#{value}%"]},
-          :$exists => lambda{|klass, filed, value| ["#{klass.table_name}.#{filed} is not null "]},
-          :$nexists => lambda{|klass, filed, value| ["#{klass.table_name}.#{filed} is null "]}
+          :$eq => lambda{|klass, filed, value, ins| ["#{klass.table_name}.#{filed} = ?", value]},
+          :$gt => lambda{|klass, filed, value, ins| ["#{klass.table_name}.#{filed} > ?", value]},
+          :$gte => lambda{|klass, filed, value, ins| ["#{klass.table_name}.#{filed} >= ?", value]},
+          :$lt => lambda{|klass, filed, value, ins| ["#{klass.table_name}.#{filed} < ?", value]},
+          :$lte => lambda{|klass, filed, value, ins| ["#{klass.table_name}.#{filed} <= ?", value]},
+          :$ne => lambda{|klass, filed, value, ins| ["#{klass.table_name}.#{filed} != ?", value]},
+          :$in => lambda{|klass, filed, value, ins| ["#{klass.table_name}.#{filed} in (?)", ins.format_array]},
+          :$nin => lambda{|klass, filed, value, ins| ["#{klass.table_name}.#{filed} not in (?) ", ins.format_array]},
+          :$like => lambda{|klass, filed, value, ins| ["#{klass.table_name}.#{filed} like ?", "%#{value}%"]},
+          :$exists => lambda{|klass, filed, value, ins| ["#{klass.table_name}.#{filed} is not null "]},
+          :$nexists => lambda{|klass, filed, value, ins| ["#{klass.table_name}.#{filed} is null "]}
       }
 
       DEFAULT_FINDER_TYPES = :$eq
@@ -37,7 +37,7 @@ module FindHelper
       def to_finder
         split_filed
 
-        FINDER_TYPES[@find_type].call(@klass, @find_filed, format_value)
+        FINDER_TYPES[@find_type].call(@klass, @find_filed, format_value, self)
       end
 
       def field_type
