@@ -1,4 +1,4 @@
-# FindHelper
+FindHelper
 
 ## Example:
 ### Define a class Category
