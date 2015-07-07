@@ -4,6 +4,7 @@ require 'find_helper/scope'
 require 'find_helper/format_finder_value'
 require 'find_helper/active_record_finder'
 require 'find_helper/mongoid_finder'
+require 'find_helper/engine'
 
 =begin
   用来扩展model的查询能力
@@ -126,3 +127,5 @@ module FindHelper
 		self.send(:extend, Scope)
 	end
 end
+
+
