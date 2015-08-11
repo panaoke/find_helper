@@ -41,10 +41,10 @@ module FindHelper
         @find_type = @find_type.to_sym
       end
 
-      def to_finder
+      def to_finder(parent_scope)
         split_filed
 
-        FINDER_TYPES[@find_type].call(@find_filed, format_value, self)
+        parent_scope.where(FINDER_TYPES[@find_type].call(@find_filed, format_value, self))
       end
 
       def field_type

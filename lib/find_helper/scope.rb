@@ -23,7 +23,7 @@ module FindHelper
 					is_active_record = self.superclass.name == 'ActiveRecord::Base'
 					finder_class = is_active_record ? ActiveRecordFinder : MongoidFinder
 
-					parent_scope.where(finder_class.new(self, key, value).to_finder)
+					finder_class.new(self, key, value).to_finder(parent_scope)
 				end
 			end
 		end
