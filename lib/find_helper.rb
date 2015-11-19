@@ -125,6 +125,7 @@ module FindHelper
 
 	included do
 		self.send(:extend, Scope)
+    # self.send(:default_order, ->{ self })
 	end
 end
 
