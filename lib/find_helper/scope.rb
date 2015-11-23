@@ -12,7 +12,7 @@ module FindHelper
 
 		def list_order(order_hash)
 			if order_hash.blank?
-				(@_default_order_call || ->{ self}).call
+				(@_default_order_call || ->{ self.where({})}).call
 			else
 				if is_active_record?
 					order(order_hash.map do |field, sord|
