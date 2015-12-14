@@ -88,7 +88,7 @@ we will find those products which price > 50 and name include 'o'
       AND (products.name like '%Red%')
     
     # is_online = true (tips: is_online is a boolean attribute)
-    Product.by_scopes('is_online' => '1') or Product.by_scopes('is_online' => 'true')
+    Product.by_scopes('$boolean_is_online' => '1') or Product.by_scopes('$boolean_is_online' => 'true')
     # SELECT "products".* FROM "products"  WHERE (products.is_online = 'true')
      
   	# category_id in [1,3,5]

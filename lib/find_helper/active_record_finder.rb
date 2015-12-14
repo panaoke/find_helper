@@ -17,7 +17,8 @@ module FindHelper
           :$nin => lambda{|klass, field, value, ins| ["#{klass.table_name}.#{field} not in (?) ", ins.format_array]},
           :$like => lambda{|klass, field, value, ins| ["#{klass.table_name}.#{field} like ?", "%#{value}%"]},
           :$exists => lambda{|klass, field, value, ins| ["#{klass.table_name}.#{field} is not null "]},
-          :$nexists => lambda{|klass, field, value, ins| ["#{klass.table_name}.#{field} is null "]}
+          :$nexists => lambda{|klass, field, value, ins| ["#{klass.table_name}.#{field} is null "]},
+          :$boolean => lambda{|klass, field, value, ins| ["#{klass.table_name}.#{field} = #{['true', '1'].include?(value.to_s) ? 1 : 0}"]},
       }
 
       DEFAULT_FINDER_TYPES = :$eq
